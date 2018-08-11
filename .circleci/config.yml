@@ -1,15 +1,16 @@
 orbs:
-#  go:
-#    executors:
-#      default:
-#        parameters:
-#          version:
-#            type: string
-#            default: 1.10.3-t130
-#        docker:
-#          - image: nmiyake/go:go-darwin-linux-no-cgo-<< parameters.version >>
-#            environment:
-#              CGO_ENABLED: 0
+  go:
+    executors:
+      default:
+        parameters:
+          version:
+            type: string
+            default: 1.10.3-t130
+        docker:
+          - image: nmiyake/go:go-darwin-linux-no-cgo-<< parameters.version >>
+            environment:
+              CGO_ENABLED: 0
+#         working_directory: /go/src/github.com/palantir/distgo
   godel:
     commands:
       setup:
@@ -84,7 +85,8 @@ godelw-test: &godelw-test
 version: 2.1
 jobs:
   verify:
-    <<: *darwin-linux-no-cgo
+    executor: go/default
+    working_directory: /go/src/github.com/palantir/distgo
     steps:
       - checkout
       - *go-version
