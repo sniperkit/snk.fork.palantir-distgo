@@ -1,10 +1,3 @@
-orbs:
-  my-orb:
-    commands:
-      dospecialthings:
-        steps:
-          - run: echo "We will now do special things"
-
 working_dir: &working_dir
   working_directory: /go/src/github.com/palantir/distgo
 
@@ -69,7 +62,6 @@ jobs:
     <<: *darwin-linux-no-cgo
     steps:
       - checkout
-      - my-orb/dospecialthings
       - *go-version
       - *godel-cache-restore
       - *godel-version
