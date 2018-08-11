@@ -10,7 +10,7 @@ orbs:
           - image: nmiyake/go:go-darwin-linux-no-cgo-<< parameters.version >>
             environment:
               CGO_ENABLED: 0
-#         working_directory: /go/src/github.com/palantir/distgo
+        working_directory: /go/src/github.com/palantir/distgo
   godel:
     commands:
       setup:
@@ -86,7 +86,6 @@ version: 2.1
 jobs:
   verify:
     executor: go/default
-    working_directory: /go/src/github.com/palantir/distgo
     steps:
       - checkout
       - *go-version
