@@ -47,14 +47,14 @@ godelw-verify: &godelw-verify
 godelw-test: &godelw-test
   run: ./godelw test --junit-output="$TESTS_DIR/$CIRCLE_PROJECT_REPONAME-tests.xml"
 
-store-test-results: &store-test-results
-  type: test-results-store
-  path: /tmp/test-results
+#store-test-results: &store-test-results
+#  type: test-results-store
+#  path: /tmp/test-results
 
-store-artifacts: &store-artifacts
-  type: artifacts-store
-  path: /tmp/test-results
-  destination: test-results
+#store-artifacts: &store-artifacts
+#  type: artifacts-store
+#  path: /tmp/test-results
+#  destination: test-results
 
 version: 2.1
 jobs:
@@ -78,8 +78,8 @@ jobs:
       - *define-tests-dir
       - *mkdir-tests-dir
       - *godelw-test
-      - *store-test-results
-      - *store-artifacts
+#      - *store-test-results
+#      - *store-artifacts
   dist:
     <<: *darwin-linux-no-cgo
     steps:
