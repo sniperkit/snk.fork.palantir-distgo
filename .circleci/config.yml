@@ -1,9 +1,27 @@
 orbs:
-  my-orb:
+#  go:
+#    executors:
+#      default:
+#        parameters:
+#          version:
+#            type: string
+#            default: 1.10.3-t130
+#        docker:
+#          - image: nmiyake/go:go-darwin-linux-no-cgo-<< parameters.version >>
+#            environment:
+#              CGO_ENABLED: 0
+  godel:
     commands:
-      dospecialthings:
+      setup:
         steps:
-          - run: echo "We will now do special things"
+          - restore_cache:
+              keys:
+                - godel-cache-{{ checksum "godelw" }}-v1
+          - run: ./godelw version
+          - save_cache:
+              key: godel-cache-{{ checksum "godelw" }}-v1
+              paths:
+                - ~/.godel
 
 working_dir: &working_dir
   working_directory: /go/src/github.com/palantir/distgo
@@ -69,11 +87,8 @@ jobs:
     <<: *darwin-linux-no-cgo
     steps:
       - checkout
-      - my-orb/dospecialthings
       - *go-version
-      - *godel-cache-restore
-      - *godel-version
-      - *godel-cache-save
+      - godel/setup
       - *godelw-verify
   test:
     <<: *darwin-linux-no-cgo
