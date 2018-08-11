@@ -3,6 +3,10 @@ orbs:
     executors:
       default:
         parameters:
+          owner:
+            type: string
+          repo:
+            type: string
           version:
             type: string
             default: 1.10.3-t130
@@ -10,7 +14,7 @@ orbs:
           - image: nmiyake/go:go-darwin-linux-no-cgo-<< parameters.version >>
             environment:
               CGO_ENABLED: 0
-        working_directory: /go/src/github.com/palantir/distgo
+        working_directory: /go/src/github.com/<< parameters.owner >>/<< parameters.repo >>
   godel:
     commands:
       setup:
@@ -85,7 +89,10 @@ godelw-test: &godelw-test
 version: 2.1
 jobs:
   verify:
-    executor: go/default
+    executor:
+      name: go/default
+      owner: palantir
+      repo: distgo
     steps:
       - checkout
       - *go-version
