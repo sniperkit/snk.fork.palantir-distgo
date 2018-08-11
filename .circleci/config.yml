@@ -3,14 +3,14 @@ orbs:
     commands:
       setup:
         steps:
-          - restore_cache:
-              keys:
-                - godel-cache-{{ checksum "godelw" }}-v1
+#          - restore_cache:
+#              keys:
+#                - godel-cache-{{ checksum "godelw" }}-v1
           - run: ./godelw version
-          - save_cache:
-              key: godel-cache-{{ checksum "godelw" }}-v1
-              paths:
-                - ~/.godel
+#          - save_cache:
+#              key: godel-cache-{{ checksum "godelw" }}-v1
+#              paths:
+#                - ~/.godel
 
 working_dir: &working_dir
   working_directory: /go/src/github.com/palantir/distgo
