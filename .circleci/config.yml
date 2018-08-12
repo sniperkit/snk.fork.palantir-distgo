@@ -1,5 +1,9 @@
 orbs:
   godel:
+    commands:
+      setup:
+        steps:
+          - run: echo "go setup"
     jobs:
       verify:
         description: Runs godelw verification
@@ -9,7 +13,7 @@ orbs:
               CGO_ENABLED: 0
         working_directory: /go/src/github.com/palantir/distgo
         steps:
-          - run: echo "hello"
+          - godel/setup
 
 version: 2.1
 
