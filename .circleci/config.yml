@@ -1,4 +1,9 @@
 orbs:
+  go:
+    commands:
+      setup:
+        steps:
+          - run: echo "go setup"
   godel:
     executors:
       darwin-linux-no-cgo:
@@ -7,16 +12,16 @@ orbs:
             environment:
               CGO_ENABLED: 0
         working_directory: /go/src/github.com/palantir/distgo
-    commands:
-      setup:
-        steps:
-          - run: echo "go setup"
+#    commands:
+#      setup:
+#        steps:
+#          - run: echo "go setup"
     jobs:
       verify:
         description: Runs godelw verification
         executor: darwin-linux-no-cgo
         steps:
-          - setup
+          - go/setup
 
 version: 2.1
 
