@@ -1,5 +1,12 @@
 orbs:
   godel:
+    executors:
+      darwin-linux-no-cgo:
+        docker:
+          - image: nmiyake/go:go-darwin-linux-no-cgo-1.10.3-t130
+            environment:
+              CGO_ENABLED: 0
+        working_directory: /go/src/github.com/palantir/distgo
     commands:
       setup:
         steps:
@@ -7,11 +14,7 @@ orbs:
     jobs:
       verify:
         description: Runs godelw verification
-        docker:
-          - image: nmiyake/go:go-darwin-linux-no-cgo-1.10.3-t130
-            environment:
-              CGO_ENABLED: 0
-        working_directory: /go/src/github.com/palantir/distgo
+        executor: darwin-linux-no-cgo
         steps:
           - setup
 
