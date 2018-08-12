@@ -1,7 +1,7 @@
 orbs:
   go:
     executors:
-      default:
+      darwin-linux-no-cgo:
         parameters:
           owner:
             type: string
@@ -15,6 +15,11 @@ orbs:
             environment:
               CGO_ENABLED: 0
         working_directory: /go/src/github.com/<< parameters.owner >>/<< parameters.repo >>
+    commands:
+      setup:
+        steps:
+          - checkout
+          - go version
   godel:
     commands:
       setup:
@@ -27,43 +32,69 @@ orbs:
               key: godel-cache-{{ checksum "godelw" }}-v1
               paths:
                 - ~/.godel
-
+    jobs:
+      verify:
+        description: Runs godelw verification
+        parameters:
+          owner:
+            type: string
+          repo:
+            type: string
+          include-tests:
+            description: If true, runs tests as part of verification
+            default: false
+            type: boolean
+        executor:
+          name: go/default
+          owner: << parameters.owner >>
+          repo: << parameters.repo >>
+        steps:
+          - go/setup
+          - godel/setup
+          - when:
+              condition: << parameters.include-tests >>
+              steps:
+                - ./godelw verify --apply=false
+          - unless:
+              condition: << parameters.include-tests >>
+              steps:
+                - ./godelw verify --apply=false --skip-test
 working_dir: &working_dir
   working_directory: /go/src/github.com/palantir/distgo
 
-darwin-linux-no-cgo: &darwin-linux-no-cgo
-  <<: *working_dir
-  docker:
-    - image: nmiyake/go:go-darwin-linux-no-cgo-1.10.3-t130
-      environment:
-        CGO_ENABLED: 0
-
-godel-root-cache-restore: &godel-root-cache-restore
-  restore_cache:
-    keys:
-      - godel-root-cache-{{ checksum "godelw" }}-{{ checksum "godel/config/godel.yml" }}-v1
-godel-root-cache-save: &godel-root-cache-save
-  save_cache:
-    key: godel-root-cache-{{ checksum "godelw" }}-{{ checksum "godel/config/godel.yml" }}-v1
-    paths:
-      - ~/.godel
-
-go-version: &go-version
-  run: go version
-
-godel-cache-restore: &godel-cache-restore
-  restore_cache:
-    keys:
-      - godel-cache-{{ checksum "godelw" }}-v1
-
-godel-version: &godel-version
-  run: ./godelw version
-
-godel-cache-save: &godel-cache-save
-  save_cache:
-    key: godel-cache-{{ checksum "godelw" }}-v1
-    paths:
-      - ~/.godel
+#darwin-linux-no-cgo: &darwin-linux-no-cgo
+#  <<: *working_dir
+#  docker:
+#    - image: nmiyake/go:go-darwin-linux-no-cgo-1.10.3-t130
+#      environment:
+#        CGO_ENABLED: 0
+#
+#godel-root-cache-restore: &godel-root-cache-restore
+#  restore_cache:
+#    keys:
+#      - godel-root-cache-{{ checksum "godelw" }}-{{ checksum "godel/config/godel.yml" }}-v1
+#godel-root-cache-save: &godel-root-cache-save
+#  save_cache:
+#    key: godel-root-cache-{{ checksum "godelw" }}-{{ checksum "godel/config/godel.yml" }}-v1
+#    paths:
+#      - ~/.godel
+#
+#go-version: &go-version
+#  run: go version
+#
+#godel-cache-restore: &godel-cache-restore
+#  restore_cache:
+#    keys:
+#      - godel-cache-{{ checksum "godelw" }}-v1
+#
+#godel-version: &godel-version
+#  run: ./godelw version
+#
+#godel-cache-save: &godel-cache-save
+#  save_cache:
+#    key: godel-cache-{{ checksum "godelw" }}-v1
+#    paths:
+#      - ~/.godel
 
 define-tests-dir: &define-tests-dir
   run: echo 'export TESTS_DIR=/tmp/test-results' >> $BASH_ENV
@@ -71,8 +102,8 @@ define-tests-dir: &define-tests-dir
 mkdir-tests-dir: &mkdir-tests-dir
   run: mkdir -p "${TESTS_DIR}"
 
-godelw-verify: &godelw-verify
-  run: ./godelw verify --apply=false --skip-test
+#godelw-verify: &godelw-verify
+#  run: ./godelw verify --apply=false --skip-test
 
 godelw-test: &godelw-test
   run: ./godelw test --junit-output="$TESTS_DIR/$CIRCLE_PROJECT_REPONAME-tests.xml"
@@ -88,16 +119,8 @@ godelw-test: &godelw-test
 
 version: 2.1
 jobs:
-  verify:
-    executor:
-      name: go/default
-      owner: palantir
-      repo: distgo
-    steps:
-      - checkout
-      - *go-version
-      - godel/setup
-      - *godelw-verify
+  godel/verify:
+    name: verify
   test:
     <<: *darwin-linux-no-cgo
     steps:
