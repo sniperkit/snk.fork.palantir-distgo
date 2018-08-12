@@ -1,37 +1,37 @@
 orbs:
-  go:
-    executors:
-      darwin-linux-no-cgo:
-        parameters:
-          owner:
-            type: string
-          repo:
-            type: string
-          version:
-            type: string
-            default: 1.10.3-t130
-        docker:
-          - image: nmiyake/go:go-darwin-linux-no-cgo-<< parameters.version >>
-            environment:
-              CGO_ENABLED: 0
-        working_directory: /go/src/github.com/<< parameters.owner >>/<< parameters.repo >>
-    commands:
-      setup:
-        steps:
-          - checkout
-          - go version
+#  go:
+#    executors:
+#      darwin-linux-no-cgo:
+#        parameters:
+#          owner:
+#            type: string
+#          repo:
+#            type: string
+#          version:
+#            type: string
+#            default: 1.10.3-t130
+#        docker:
+#          - image: nmiyake/go:go-darwin-linux-no-cgo-<< parameters.version >>
+#            environment:
+#              CGO_ENABLED: 0
+#        working_directory: /go/src/github.com/<< parameters.owner >>/<< parameters.repo >>
+#    commands:
+#      setup:
+#        steps:
+#          - checkout
+#          - go version
   godel:
-    commands:
-      setup:
-        steps:
-          - restore_cache:
-              keys:
-                - godel-cache-{{ checksum "godelw" }}-v1
-          - run: ./godelw version
-          - save_cache:
-              key: godel-cache-{{ checksum "godelw" }}-v1
-              paths:
-                - ~/.godel
+#    commands:
+#      setup:
+#        steps:
+#          - restore_cache:
+#              keys:
+#                - godel-cache-{{ checksum "godelw" }}-v1
+#          - run: ./godelw version
+#          - save_cache:
+#              key: godel-cache-{{ checksum "godelw" }}-v1
+#              paths:
+#                - ~/.godel
     jobs:
       verify:
         description: Runs godelw verification
@@ -44,13 +44,23 @@ orbs:
             description: If true, runs tests as part of verification
             default: false
             type: boolean
-        executor:
-          name: go/default
-          owner: << parameters.owner >>
-          repo: << parameters.repo >>
+        docker:
+          - image: nmiyake/go:go-darwin-linux-no-cgo-1.10.3-t130
+            environment:
+              CGO_ENABLED: 0
+        working_directory: /go/src/github.com/palantir/distgo
         steps:
-          - go/setup
-          - godel/setup
+#          - go/setup
+          - checkout
+          - go version
+          - restore_cache:
+              keys:
+                - godel-cache-{{ checksum "godelw" }}-v1
+          - run: ./godelw version
+          - save_cache:
+              key: godel-cache-{{ checksum "godelw" }}-v1
+              paths:
+                - ~/.godel
           - when:
               condition: << parameters.include-tests >>
               steps:
@@ -59,6 +69,7 @@ orbs:
               condition: << parameters.include-tests >>
               steps:
                 - ./godelw verify --apply=false --skip-test
+
 working_dir: &working_dir
   working_directory: /go/src/github.com/palantir/distgo
 
