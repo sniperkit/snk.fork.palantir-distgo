@@ -13,7 +13,7 @@ orbs:
               CGO_ENABLED: 0
         working_directory: /go/src/github.com/palantir/distgo
         steps:
-          - godel/setup
+          - setup
 
 version: 2.1
 
