@@ -1,43 +1,72 @@
 orbs:
-  go:
-    commands:
-      setup:
-        steps:
-          - run: echo "go setup"
   godel:
     executors:
-      darwin-linux-no-cgo:
+      ### TODO: move this to Go orb
+      go-darwin-linux-no-cgo:
+        parameters:
+          owner:
+            type: string
+          repo:
+            type: string
+          version:
+            type: string
+            default: 1.10.3-t130
         docker:
-          - image: nmiyake/go:go-darwin-linux-no-cgo-1.10.3-t130
+          - image: nmiyake/go:go-darwin-linux-no-cgo-<< parameters.version >>
             environment:
               CGO_ENABLED: 0
-        working_directory: /go/src/github.com/palantir/distgo
-#    commands:
-#      setup:
-#        steps:
-#          - run: echo "go setup"
+        working_directory: /go/src/github.com/<< parameters.owner >>/<< parameters.repo >>
+      ###
+    commands:
+      ### TODO: move to Go orb
+      go-setup:
+        steps:
+          - checkout
+          - run: go version
+      ###
+      setup:
+        steps:
+          - restore_cache:
+              keys:
+                - godel-cache-{{ checksum "godelw" }}-v1
+          - run: ./godelw version
+          - save_cache:
+              key: godel-cache-{{ checksum "godelw" }}-v1
+              paths:
+                - ~/.godel
     jobs:
       verify:
-        description: Runs godelw verification
-        executor: darwin-linux-no-cgo
+        parameters:
+          owner:
+            type: string
+          repo:
+            type: string
+          include-tests:
+            type: boolean
+            default: false
+        executor:
+          name: go-darwin-linux-no-cgo
+          owner: << parameters.owner >>
+          repo: << parameters.repo >>
         steps:
-          - go/setup
+          - go-setup
+          - setup
+          - when:
+              condition: << parameters.include-tests >>
+              steps:
+                - run: ./godelw verify --apply=false
+          - unless:
+              condition: << parameters.include-tests >>
+              steps:
+                - run: ./godelw verify --apply=false --skip-test
 
 version: 2.1
-
-#jobs:
-#  verify:
-#    docker:
-#      - image: nmiyake/go:go-darwin-linux-no-cgo-1.10.3-t130
-#        environment:
-#          CGO_ENABLED: 0
-#    working_directory: /go/src/github.com/palantir/distgo
-#    steps:
-#      - run: echo "hello"
 
 workflows:
   version: 2
   build-publish:
     jobs:
       - godel/verify:
-          name: "verify"
+          name: verify
+          owner: palantir
+          repo: distgo
