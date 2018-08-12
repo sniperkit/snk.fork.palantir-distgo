@@ -59,6 +59,24 @@ orbs:
               condition: << parameters.include-tests >>
               steps:
                 - run: ./godelw verify --apply=false --skip-test
+      dist:
+        parameters:
+          owner:
+            type: string
+          repo:
+            type: string
+        executor:
+          name: go-darwin-linux-no-cgo
+          owner: << parameters.owner >>
+          repo: << parameters.repo >>
+        steps:
+          - go-setup
+          - setup
+          - run: ./godelw dist
+          - save_cache:
+              key: dist-{{ .Environment.CIRCLE_WORKFLOW_ID }}-{{ .Environment.CIRCLE_SHA1 }}-v1
+              paths:
+                - out
 
 version: 2.1
 
@@ -68,5 +86,10 @@ workflows:
     jobs:
       - godel/verify:
           name: verify
+          owner: palantir
+          repo: distgo
+          include-tests: true
+      - godel/dist:
+          name: dist
           owner: palantir
           repo: distgo
