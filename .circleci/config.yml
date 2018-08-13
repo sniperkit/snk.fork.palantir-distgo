@@ -1,29 +1,27 @@
 orbs:
   godel:
-    executors:
-      ### TODO: move this to Go orb
-      go-darwin-linux-no-cgo:
-        parameters:
-          owner:
-            type: string
-          repo:
-            type: string
-          version:
-            type: string
-            default: 1.10.3-t130
-        docker:
-          - image: nmiyake/go:go-darwin-linux-no-cgo-<< parameters.version >>
-            environment:
-              CGO_ENABLED: 0
-        working_directory: /go/src/github.com/<< parameters.owner >>/<< parameters.repo >>
-      ###
+    orbs:
+      go:
+        executors:
+          darwin-linux-no-cgo:
+            parameters:
+              owner:
+                type: string
+              repo:
+                type: string
+              version:
+                type: string
+                default: 1.10.3-t130
+            docker:
+              - image: nmiyake/go:go-darwin-linux-no-cgo-<< parameters.version >>
+                environment:
+                  CGO_ENABLED: 0
+            working_directory: /go/src/github.com/<< parameters.owner >>/<< parameters.repo >>
+        commands:
+          setup:
+            - checkout
+            - run: go version
     commands:
-      ### TODO: move to Go orb
-      go-setup:
-        steps:
-          - checkout
-          - run: go version
-      ###
       setup:
         steps:
           - restore_cache:
@@ -45,11 +43,11 @@ orbs:
             type: boolean
             default: false
         executor:
-          name: go-darwin-linux-no-cgo
+          name: go/darwin-linux-no-cgo
           owner: << parameters.owner >>
           repo: << parameters.repo >>
         steps:
-          - go-setup
+          - go/setup
           - setup
           - when:
               condition: << parameters.include-tests >>
@@ -66,11 +64,11 @@ orbs:
           repo:
             type: string
         executor:
-          name: go-darwin-linux-no-cgo
+          name: go/darwin-linux-no-cgo
           owner: << parameters.owner >>
           repo: << parameters.repo >>
         steps:
-          - go-setup
+          - go/setup
           - setup
           - run: echo 'export TESTS_DIR=/tmp/test-results' >> $BASH_ENV
           - run: mkdir -p "${TESTS_DIR}"
@@ -87,11 +85,11 @@ orbs:
           repo:
             type: string
         executor:
-          name: go-darwin-linux-no-cgo
+          name: go/darwin-linux-no-cgo
           owner: << parameters.owner >>
           repo: << parameters.repo >>
         steps:
-          - go-setup
+          - go/setup
           - setup
           - run: ./godelw dist
           - save_cache:
@@ -107,11 +105,11 @@ orbs:
           product:
             type: string
         executor:
-          name: go-darwin-linux-no-cgo
+          name: go/darwin-linux-no-cgo
           owner: << parameters.owner >>
           repo: << parameters.repo >>
         steps:
-          - go-setup
+          - go/setup
           - setup
           - restore_cache:
               keys:
