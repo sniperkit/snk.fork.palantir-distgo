@@ -19,8 +19,9 @@ orbs:
             working_directory: /go/src/github.com/<< parameters.owner >>/<< parameters.repo >>
         commands:
           setup:
-            - checkout
-            - run: go version
+            steps:
+              - checkout
+              - run: go version
     commands:
       setup:
         steps:
