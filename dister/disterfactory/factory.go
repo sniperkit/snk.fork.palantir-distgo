@@ -1,3 +1,8 @@
+/*
+Sniperkit-Bot
+- Status: analyzed
+*/
+
 // Copyright 2016 Palantir Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,8 +22,8 @@ package disterfactory
 import (
 	"github.com/pkg/errors"
 
-	"github.com/palantir/distgo/dister"
-	"github.com/palantir/distgo/distgo"
+	"github.com/sniperkit/snk.fork.palantir-distgo/dister"
+	"github.com/sniperkit/snk.fork.palantir-distgo/distgo"
 )
 
 func New(providedDisterCreators []dister.Creator, providedConfigUpgraders []distgo.ConfigUpgrader) (distgo.DisterFactory, error) {

@@ -1,3 +1,8 @@
+/*
+Sniperkit-Bot
+- Status: analyzed
+*/
+
 // Copyright 2016 Palantir Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,8 +22,8 @@ package dockerbuilderfactory
 import (
 	"github.com/pkg/errors"
 
-	"github.com/palantir/distgo/distgo"
-	"github.com/palantir/distgo/dockerbuilder"
+	"github.com/sniperkit/snk.fork.palantir-distgo/distgo"
+	"github.com/sniperkit/snk.fork.palantir-distgo/dockerbuilder"
 )
 
 func New(providedDockerBuilderCreators []dockerbuilder.Creator, providedConfigUpgraders []distgo.ConfigUpgrader) (distgo.DockerBuilderFactory, error) {
@@ -45,7 +50,7 @@ func New(providedDockerBuilderCreators []dockerbuilder.Creator, providedConfigUp
 		configUpgraders[currUpgrader.TypeName()] = currUpgrader
 	}
 	return &dockerBuilderFactory{
-		types: types,
+		types:                        types,
 		dockerBuilderCreators:        dockerBuilderCreators,
 		dockerBuilderConfigUpgraders: configUpgraders,
 	}, nil

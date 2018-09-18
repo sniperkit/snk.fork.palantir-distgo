@@ -1,3 +1,8 @@
+/*
+Sniperkit-Bot
+- Status: analyzed
+*/
+
 // Copyright 2016 Palantir Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -30,9 +35,9 @@ import (
 	"github.com/palantir/pkg/signals"
 	"github.com/pkg/errors"
 
-	"github.com/palantir/distgo/distgo"
-	"github.com/palantir/distgo/distgo/build"
-	"github.com/palantir/distgo/distgo/dist"
+	"github.com/sniperkit/snk.fork.palantir-distgo/distgo"
+	"github.com/sniperkit/snk.fork.palantir-distgo/distgo/build"
+	"github.com/sniperkit/snk.fork.palantir-distgo/distgo/dist"
 )
 
 func BuildProducts(projectInfo distgo.ProjectInfo, projectParam distgo.ProjectParam, configModTime *time.Time, productDockerIDs []distgo.ProductDockerID, tagKeys []string, verbose, dryRun bool, stdout io.Writer) error {

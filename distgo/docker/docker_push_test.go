@@ -1,3 +1,8 @@
+/*
+Sniperkit-Bot
+- Status: analyzed
+*/
+
 // Copyright 2016 Palantir Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -28,15 +33,15 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/palantir/distgo/dister/disterfactory"
-	"github.com/palantir/distgo/dister/osarchbin"
-	"github.com/palantir/distgo/distgo"
-	distgoconfig "github.com/palantir/distgo/distgo/config"
-	"github.com/palantir/distgo/distgo/docker"
-	"github.com/palantir/distgo/dockerbuilder"
-	"github.com/palantir/distgo/dockerbuilder/dockerbuilderfactory"
-	"github.com/palantir/distgo/projectversioner/projectversionerfactory"
-	"github.com/palantir/distgo/publisher/publisherfactory"
+	"github.com/sniperkit/snk.fork.palantir-distgo/dister/disterfactory"
+	"github.com/sniperkit/snk.fork.palantir-distgo/dister/osarchbin"
+	"github.com/sniperkit/snk.fork.palantir-distgo/distgo"
+	distgoconfig "github.com/sniperkit/snk.fork.palantir-distgo/distgo/config"
+	"github.com/sniperkit/snk.fork.palantir-distgo/distgo/docker"
+	"github.com/sniperkit/snk.fork.palantir-distgo/dockerbuilder"
+	"github.com/sniperkit/snk.fork.palantir-distgo/dockerbuilder/dockerbuilderfactory"
+	"github.com/sniperkit/snk.fork.palantir-distgo/projectversioner/projectversionerfactory"
+	"github.com/sniperkit/snk.fork.palantir-distgo/publisher/publisherfactory"
 )
 
 func TestDockerPublish(t *testing.T) {

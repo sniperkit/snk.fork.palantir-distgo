@@ -1,3 +1,8 @@
+/*
+Sniperkit-Bot
+- Status: analyzed
+*/
+
 // Copyright 2016 Palantir Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,9 +20,9 @@
 package config
 
 import (
-	"github.com/palantir/distgo/dister/manual"
-	"github.com/palantir/distgo/dister/manual/config/internal/v0"
-	"github.com/palantir/distgo/distgo"
+	"github.com/sniperkit/snk.fork.palantir-distgo/dister/manual"
+	"github.com/sniperkit/snk.fork.palantir-distgo/dister/manual/config/internal/v0"
+	"github.com/sniperkit/snk.fork.palantir-distgo/distgo"
 )
 
 type Manual v0.Config

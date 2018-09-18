@@ -1,3 +1,8 @@
+/*
+Sniperkit-Bot
+- Status: analyzed
+*/
+
 // Copyright 2016 Palantir Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,10 +31,10 @@ import (
 	"github.com/pkg/errors"
 	"gopkg.in/yaml.v2"
 
-	"github.com/palantir/distgo/distgo"
-	"github.com/palantir/distgo/publisher"
-	"github.com/palantir/distgo/publisher/bintray/config"
-	"github.com/palantir/distgo/publisher/maven"
+	"github.com/sniperkit/snk.fork.palantir-distgo/distgo"
+	"github.com/sniperkit/snk.fork.palantir-distgo/publisher"
+	"github.com/sniperkit/snk.fork.palantir-distgo/publisher/bintray/config"
+	"github.com/sniperkit/snk.fork.palantir-distgo/publisher/maven"
 )
 
 const TypeName = "bintray"

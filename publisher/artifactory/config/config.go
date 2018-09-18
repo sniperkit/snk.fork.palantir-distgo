@@ -1,3 +1,8 @@
+/*
+Sniperkit-Bot
+- Status: analyzed
+*/
+
 // Copyright 2016 Palantir Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,7 +20,7 @@
 package config
 
 import (
-	"github.com/palantir/distgo/publisher/artifactory/config/internal/v0"
+	"github.com/sniperkit/snk.fork.palantir-distgo/publisher/artifactory/config/internal/v0"
 )
 
 type Artifactory v0.Config

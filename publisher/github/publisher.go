@@ -1,3 +1,8 @@
+/*
+Sniperkit-Bot
+- Status: analyzed
+*/
+
 // Copyright 2016 Palantir Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -32,9 +37,9 @@ import (
 	"gopkg.in/cheggaaa/pb.v1"
 	"gopkg.in/yaml.v2"
 
-	"github.com/palantir/distgo/distgo"
-	"github.com/palantir/distgo/publisher"
-	"github.com/palantir/distgo/publisher/github/config"
+	"github.com/sniperkit/snk.fork.palantir-distgo/distgo"
+	"github.com/sniperkit/snk.fork.palantir-distgo/publisher"
+	"github.com/sniperkit/snk.fork.palantir-distgo/publisher/github/config"
 )
 
 const TypeName = "github"

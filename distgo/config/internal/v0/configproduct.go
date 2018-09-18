@@ -1,3 +1,8 @@
+/*
+Sniperkit-Bot
+- Status: analyzed
+*/
+
 // Copyright 2016 Palantir Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,7 +20,7 @@
 package v0
 
 import (
-	"github.com/palantir/distgo/distgo"
+	"github.com/sniperkit/snk.fork.palantir-distgo/distgo"
 )
 
 // ProductConfig represents user-specified configuration on how to build a specific product.

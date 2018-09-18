@@ -1,3 +1,8 @@
+/*
+Sniperkit-Bot
+- Status: analyzed
+*/
+
 // Copyright 2016 Palantir Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -25,8 +30,8 @@ import (
 	"github.com/palantir/godel/pkg/osarch"
 	"github.com/pkg/errors"
 
-	"github.com/palantir/distgo/distgo"
-	"github.com/palantir/distgo/distgo/build"
+	"github.com/sniperkit/snk.fork.palantir-distgo/distgo"
+	"github.com/sniperkit/snk.fork.palantir-distgo/distgo/build"
 )
 
 func PrintBuildArtifacts(projectInfo distgo.ProjectInfo, projectParam distgo.ProjectParam, productBuildIDs []distgo.ProductBuildID, absPath, requiresBuild bool, stdout io.Writer) error {

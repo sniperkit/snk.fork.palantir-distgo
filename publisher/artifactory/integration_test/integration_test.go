@@ -1,3 +1,8 @@
+/*
+Sniperkit-Bot
+- Status: analyzed
+*/
+
 // Copyright 2016 Palantir Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,7 +29,7 @@ import (
 	"github.com/palantir/godel/pkg/products/v2/products"
 	"github.com/stretchr/testify/require"
 
-	"github.com/palantir/distgo/publisher/publishertester"
+	"github.com/sniperkit/snk.fork.palantir-distgo/publisher/publishertester"
 )
 
 func TestArtifactoryPublish(t *testing.T) {

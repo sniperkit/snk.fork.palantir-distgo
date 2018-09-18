@@ -1,3 +1,8 @@
+/*
+Sniperkit-Bot
+- Status: analyzed
+*/
+
 // Copyright 2016 Palantir Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,10 +31,10 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/palantir/distgo/distgo"
-	"github.com/palantir/distgo/distgo/projectversion"
-	"github.com/palantir/distgo/projectversioner/git"
-	"github.com/palantir/distgo/projectversioner/script"
+	"github.com/sniperkit/snk.fork.palantir-distgo/distgo"
+	"github.com/sniperkit/snk.fork.palantir-distgo/distgo/projectversion"
+	"github.com/sniperkit/snk.fork.palantir-distgo/projectversioner/git"
+	"github.com/sniperkit/snk.fork.palantir-distgo/projectversioner/script"
 )
 
 func TestProjectVersionDefaultParam(t *testing.T) {

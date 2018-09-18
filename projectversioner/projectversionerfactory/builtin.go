@@ -1,3 +1,8 @@
+/*
+Sniperkit-Bot
+- Status: analyzed
+*/
+
 // Copyright 2016 Palantir Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,12 +23,12 @@ import (
 	"github.com/pkg/errors"
 	"gopkg.in/yaml.v2"
 
-	"github.com/palantir/distgo/distgo"
-	"github.com/palantir/distgo/projectversioner"
-	"github.com/palantir/distgo/projectversioner/git"
-	gitconfig "github.com/palantir/distgo/projectversioner/git/config"
-	"github.com/palantir/distgo/projectversioner/script"
-	scriptconfig "github.com/palantir/distgo/projectversioner/script/config"
+	"github.com/sniperkit/snk.fork.palantir-distgo/distgo"
+	"github.com/sniperkit/snk.fork.palantir-distgo/projectversioner"
+	"github.com/sniperkit/snk.fork.palantir-distgo/projectversioner/git"
+	gitconfig "github.com/sniperkit/snk.fork.palantir-distgo/projectversioner/git/config"
+	"github.com/sniperkit/snk.fork.palantir-distgo/projectversioner/script"
+	scriptconfig "github.com/sniperkit/snk.fork.palantir-distgo/projectversioner/script/config"
 )
 
 type creatorWithUpgrader struct {

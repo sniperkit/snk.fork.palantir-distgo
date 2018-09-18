@@ -1,3 +1,8 @@
+/*
+Sniperkit-Bot
+- Status: analyzed
+*/
+
 // Copyright 2016 Palantir Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,7 +22,7 @@ package cmd
 import (
 	"github.com/spf13/cobra"
 
-	"github.com/palantir/distgo/distgo/projectversion"
+	"github.com/sniperkit/snk.fork.palantir-distgo/distgo/projectversion"
 )
 
 var projectVersionCmd = &cobra.Command{

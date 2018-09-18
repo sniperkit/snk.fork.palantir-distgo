@@ -1,3 +1,8 @@
+/*
+Sniperkit-Bot
+- Status: analyzed
+*/
+
 // Copyright 2016 Palantir Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,7 +23,7 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/palantir/distgo/distgo"
+	"github.com/sniperkit/snk.fork.palantir-distgo/distgo"
 )
 
 func Run(projectInfo distgo.ProjectInfo, stdout io.Writer) error {

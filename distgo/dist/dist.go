@@ -1,3 +1,8 @@
+/*
+Sniperkit-Bot
+- Status: analyzed
+*/
+
 // Copyright 2016 Palantir Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -29,8 +34,8 @@ import (
 	"github.com/pkg/errors"
 	"github.com/termie/go-shutil"
 
-	"github.com/palantir/distgo/distgo"
-	"github.com/palantir/distgo/distgo/build"
+	"github.com/sniperkit/snk.fork.palantir-distgo/distgo"
+	"github.com/sniperkit/snk.fork.palantir-distgo/distgo/build"
 )
 
 func Products(projectInfo distgo.ProjectInfo, projectParam distgo.ProjectParam, configModTime *time.Time, productDistIDs []distgo.ProductDistID, dryRun bool, stdout io.Writer) error {

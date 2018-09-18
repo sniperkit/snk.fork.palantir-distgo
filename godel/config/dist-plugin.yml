@@ -1,8 +1,11 @@
+# Sniperkit-Bot
+# - Status: analyzed
+
 products:
   dist-plugin:
     build:
       main-pkg: .
-      version-var: github.com/palantir/distgo/cmd.Version
+      version-var: github.com/sniperkit/snk.fork.palantir-distgo/cmd.Version
       environment:
         CGO_ENABLED: "0"
       os-archs:

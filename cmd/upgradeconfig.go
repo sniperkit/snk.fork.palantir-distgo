@@ -1,3 +1,8 @@
+/*
+Sniperkit-Bot
+- Status: analyzed
+*/
+
 // Copyright 2016 Palantir Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,7 +22,7 @@ package cmd
 import (
 	"github.com/palantir/godel/framework/pluginapi"
 
-	"github.com/palantir/distgo/distgo/config"
+	"github.com/sniperkit/snk.fork.palantir-distgo/distgo/config"
 )
 
 var upgradeConfigCmd = pluginapi.CobraUpgradeConfigCmd(func(cfgBytes []byte) ([]byte, error) {

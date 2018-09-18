@@ -1,3 +1,8 @@
+/*
+Sniperkit-Bot
+- Status: analyzed
+*/
+
 // Copyright 2016 Palantir Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,16 +20,16 @@
 package publisherfactory
 
 import (
-	"github.com/palantir/distgo/distgo"
-	"github.com/palantir/distgo/publisher"
-	"github.com/palantir/distgo/publisher/artifactory"
-	artifactoryconfig "github.com/palantir/distgo/publisher/artifactory/config"
-	"github.com/palantir/distgo/publisher/bintray"
-	bintrayconfig "github.com/palantir/distgo/publisher/bintray/config"
-	"github.com/palantir/distgo/publisher/github"
-	githubconfig "github.com/palantir/distgo/publisher/github/config"
-	"github.com/palantir/distgo/publisher/mavenlocal"
-	mavenlocalconfig "github.com/palantir/distgo/publisher/mavenlocal/config"
+	"github.com/sniperkit/snk.fork.palantir-distgo/distgo"
+	"github.com/sniperkit/snk.fork.palantir-distgo/publisher"
+	"github.com/sniperkit/snk.fork.palantir-distgo/publisher/artifactory"
+	artifactoryconfig "github.com/sniperkit/snk.fork.palantir-distgo/publisher/artifactory/config"
+	"github.com/sniperkit/snk.fork.palantir-distgo/publisher/bintray"
+	bintrayconfig "github.com/sniperkit/snk.fork.palantir-distgo/publisher/bintray/config"
+	"github.com/sniperkit/snk.fork.palantir-distgo/publisher/github"
+	githubconfig "github.com/sniperkit/snk.fork.palantir-distgo/publisher/github/config"
+	"github.com/sniperkit/snk.fork.palantir-distgo/publisher/mavenlocal"
+	mavenlocalconfig "github.com/sniperkit/snk.fork.palantir-distgo/publisher/mavenlocal/config"
 )
 
 type creatorWithUpgrader struct {

@@ -1,3 +1,8 @@
+/*
+Sniperkit-Bot
+- Status: analyzed
+*/
+
 // Copyright 2016 Palantir Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -34,7 +39,7 @@ import (
 	"github.com/pkg/errors"
 	"gopkg.in/cheggaaa/pb.v1"
 
-	"github.com/palantir/distgo/distgo"
+	"github.com/sniperkit/snk.fork.palantir-distgo/distgo"
 )
 
 type FileInfo struct {
